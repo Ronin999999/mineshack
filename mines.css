@@ -1,3 +1,4 @@
+/* Шрифт */
 @font-face {
   font-family: 'SF Pro Display';
   src: url('hui.ttf') format('truetype');
@@ -5,6 +6,41 @@
   font-style: italic;
 }
 
+/* Снегопад */
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Чтобы клики проходили сквозь снежинки */
+    z-index: 9999; /* Поверх всех элементов */
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px; /* Начинают за пределами экрана */
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%; /* Круглая форма */
+    opacity: 0.8; /* Полупрозрачность */
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh); /* Падают вниз */
+        opacity: 0.3; /* Исчезают к низу */
+    }
+}
+
+/* Сброс стилей и общие настройки */
 * {
   box-sizing: border-box;
 }
@@ -278,6 +314,13 @@ body {
 }
 
 @media (hover: none) {
+  #prev_preset_btn,
+  #next_preset_btn,
+  #playButton {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
   #prev_preset_btn,
   #next_preset_btn,
   #playButton {
